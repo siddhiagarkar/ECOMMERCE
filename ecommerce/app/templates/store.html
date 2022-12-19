@@ -1,0 +1,44 @@
+{% include 'main.html' %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/allstyle.css' %}">
+
+{% block content %}
+    <body>
+        <div class="card-deck" style="margin:25px;">
+            <div class="card">
+              <img class="card-img-top" src="{% static 'images/unknown.png' %}" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Item name</h5>
+                <p class="card-text">price</p>
+                <button type="button" class="btn btn-outline-primary">Add to cart</button>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">in stock or sold</small>
+              </div>
+            </div>
+            <div class="card">
+              <img class="card-img-top" src="{% static 'images/unknown.png' %}" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Item name</h5>
+                <p class="card-text">price</p>
+                <button type="button" class="btn btn-outline-primary">Add to cart</button>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">in stock or sold</small>
+              </div>
+            </div>
+            <div class="card">
+              <img class="card-img-top" src="{% static 'images/unknown.png' %}" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Item name</h5>
+                <p class="card-text">price</p>
+                <button type="button" class="btn btn-outline-primary">Add to cart</button>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">in stock or sold</small>
+              </div>
+            </div>
+          </div>
+    </body>
+{% endblock content %}

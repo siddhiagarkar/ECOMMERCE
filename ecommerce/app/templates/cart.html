@@ -1,0 +1,74 @@
+{% include 'main.html' %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/allstyle.css' %}">
+
+{% block content %}
+<body>
+    <div class="card" style="margin: 50px;">
+        <div class="card-body">
+            <a href="{% url 'store' %}">
+            <button type="button" class="btn btn-outline-primary">Continue shopping</button>
+            </a>
+            <hr>
+
+            <div class="rows" style="display: flex; flex-direction: row; justify-content: space-between; margin: 10px;">
+                    <div class="element">
+                        Items : 2   
+                    </div>
+                    <div class="element">
+                        Total : Rs. 400
+                    </div>
+                    <div class="element">
+                        <a href = "{% url 'checkout' %}">
+                        <button type="button" class="btn btn-success">CHECKOUT</button>
+                        </a>
+                    </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin: 40px;">
+        <strong>
+        <div class="card-body">
+            <div class="rows" style="display: flex; flex-direction: row; justify-content: space-between; margin: 10px;">
+                <div class="element">
+                    something
+                </div>
+                <div class="element">
+                    Item
+                </div>
+                <div class="element">
+                    Price
+                </div>
+                <div class="element">
+                    Quantity
+                </div>
+                <div class="element">
+                    Total
+                </div>
+            </div>
+        </strong>
+            <hr>
+
+            <div class="rows" style="display: flex; flex-direction: row; justify-content: space-between; margin: 10px;">
+                <div class="element">
+                    <img src=".." alt="img">
+                </div>
+                <div class="element">
+                    corset
+                </div>
+                <div class="element">
+                    800
+                </div>
+                <div class="element">
+                    1
+                </div>
+                <div class="element">
+                    800
+                </div>
+            </div>
+       </div>
+      </div>
+</body>
+{% endblock content %}

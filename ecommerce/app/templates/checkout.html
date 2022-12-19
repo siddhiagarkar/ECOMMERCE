@@ -1,0 +1,83 @@
+{% include 'main.html' %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/allstyle.css' %}">
+
+{% block content %}
+<body>
+    <div class="class" style="display: flex; flex-direction:row; justify-content: space-around; margin-top: 50px;">
+        <div class="card">
+            <div class="card-body" style="padding-top: 30px;">
+                <div class="inputs" style="display:flex; flex-direction:row; justify-content: space-between;">
+                    <div class="name">
+                        <input placeholder="Name">
+                    </div>
+                    &nbsp;
+                    <div class="email">
+                        <input placeholder="Email">
+                    </div>
+                </div>
+
+                <hr>
+                Shipping Information:
+                <hr>
+                <div class="inputss" style="display:flex; flex-direction:row; justify-content: space-between;">
+                    <div class="address">
+                        <input placeholder="Address">
+                    </div>
+                    &nbsp;
+                    <div class="city">
+                        <input placeholder="City">
+                    </div>
+                </div>
+                <br>
+                <div class="inputsss" style="display:flex; flex-direction:row; justify-content: space-between;">
+                    <div class="state">
+                        <input placeholder="State">
+                    </div>
+                    &nbsp;
+                    <div class="code">
+                        <input placeholder="Pincode">
+                    </div>
+                </div>
+                <hr>
+                <a href = "{% url 'store' %}">
+                    <button type="submit" class="btn btn-success" style="display: block;
+                    margin-left: auto;
+                    margin-right: auto">CONTINUE</button>
+                </a>
+            </div>
+          </div>
+          <div class="card" style="width: 500px;">
+            <div class="card-body" style="padding-top: 30px">
+                <a href="{% url 'cart' %}">
+                    <button type="button" class="btn btn-outline-primary">Back to Cart</button>
+                </a>
+                <hr>
+                <h2>Order Summary</h2>
+                <hr>
+                <div class="rows" style="display: flex; flex-direction: row; justify-content: space-around; margin: 10px;">
+                    <div class="element">
+                        <img src=".." alt="img">
+                    </div>
+                    <div class="element">
+                        corset
+                    </div>
+                    <div class="element">
+                        x1
+                    </div>
+                    <div class="element">
+                        800
+                    </div>
+                </div>
+
+                <hr>
+
+                <strong>Items : <br>
+                Total : 
+                </strong>
+            </div>
+          </div>
+    </div>
+</body>
+{% endblock content %}
