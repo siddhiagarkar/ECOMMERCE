@@ -5,40 +5,20 @@
 
 {% block content %}
     <body>
-        <div class="card-deck" style="margin:25px;">
-            <div class="card">
+        <div class="row" style="margin:25px;justify-content: center;">
+          {% for thing in things %}
+            <div class="col-lg-3" style="background-color: rgb(242, 234, 212); border-radius: 12px; padding-top: 10px;padding-bottom: 10px; margin: 20px; justify-content: space-around;">
               <img class="card-img-top" src="{% static 'images/unknown.png' %}" alt="Card image cap">
               <div class="card-body">
-                <h5 class="card-title">Item name</h5>
-                <p class="card-text">price</p>
+                <h5 class="card-title">{{thing.item}}</h5>
+                <p class="card-text">Rs.{{thing.price}}</p>
                 <button type="button" class="btn btn-outline-primary">Add to cart</button>
               </div>
               <div class="card-footer">
-                <small class="text-muted">in stock or sold</small>
+                <small class="text-muted">in stock or sold out</small>
               </div>
             </div>
-            <div class="card">
-              <img class="card-img-top" src="{% static 'images/unknown.png' %}" alt="Card image cap">
-              <div class="card-body">
-                <h5 class="card-title">Item name</h5>
-                <p class="card-text">price</p>
-                <button type="button" class="btn btn-outline-primary">Add to cart</button>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">in stock or sold</small>
-              </div>
-            </div>
-            <div class="card">
-              <img class="card-img-top" src="{% static 'images/unknown.png' %}" alt="Card image cap">
-              <div class="card-body">
-                <h5 class="card-title">Item name</h5>
-                <p class="card-text">price</p>
-                <button type="button" class="btn btn-outline-primary">Add to cart</button>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">in stock or sold</small>
-              </div>
-            </div>
-          </div>
+          {% endfor %}
+        </div>
     </body>
 {% endblock content %}

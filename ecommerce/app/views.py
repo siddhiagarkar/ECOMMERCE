@@ -1,13 +1,22 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import *
 
 def store(suman):
-    return render(suman, 'store.html')
+    things = Product.objects.all()
+    context = {'things': things}
+    return render(suman, 'store.html', context)
 
 def cart(navneet):
-    return render(navneet, 'cart.html')
+    ord = Order.objects.all()
+    orditem = OrderItem.objects.all()
+    context = {'ord': ord , 'orditem': orditem}
+    return render(navneet, 'cart.html', context)
 
 def checkout(komal):
-    return render(komal, 'checkout.html')
+    ord = Order.objects.all()
+    orditem = OrderItem.objects.all()
+    context = {'ord': ord , 'orditem': orditem}
+    return render(komal, 'checkout.html', context)
 
 # Create your views here.
