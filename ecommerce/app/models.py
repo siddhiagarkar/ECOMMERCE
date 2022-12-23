@@ -12,7 +12,7 @@ class Customer(models.Model):
 
 class Product(models.Model):
     item = models.CharField(null=True, max_length= 200)
-    image = models.ImageField(null=True)
+    image = models.ImageField(blank=True, null=True)
     price = models.IntegerField(null = True)
     TAG_CHOICES = ((True, 'Fragile'), (False, 'Non-Fragile'))
     tag = models.BooleanField(choices = TAG_CHOICES, null=True)
