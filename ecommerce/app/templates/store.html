@@ -8,7 +8,7 @@
         <div class="row" style="margin:25px;justify-content: center;">
           {% for thing in things %}
             <div class="col-lg-3" style="background-color: rgb(242, 234, 212); border-radius: 12px; padding-top: 10px;padding-bottom: 10px; margin: 20px; justify-content: space-around;">
-              <img class="card-img-top" src="{{thing.image.url}}" alt="Card image cap">
+              <img class="card-img-top" src="{{thing.imageURL}}" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">{{thing.item}}</h5>
                 <p class="card-text">Rs.{{thing.price}}</p>

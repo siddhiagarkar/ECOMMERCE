@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Customer(models.Model):
-    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE, related_name="customer")
     name = models.CharField(null=True, max_length=40)
     email = models.EmailField(null=True)
 
@@ -39,12 +39,34 @@ class Order(models.Model):
     def __str__(self):
         return str(self.id)
 
+    @property
+    def get_cart_total(self):
+        orderitems = self.orderitem_set.all()
+        total = sum([item.get_total for item in orderitems])
+        return total
+
+    @property
+    def get_cart_items(self):
+        orderitems = self.orderitem_set.all()
+        total = sum([item.get_quantity for item in orderitems])
+        return total
+
 class OrderItem(models.Model):
     product = models.ForeignKey(Product, null=True, on_delete=models.SET_NULL)
     order = models.ForeignKey(Order, null=True, on_delete=models.SET_NULL)
     quantity = models.IntegerField(default=0, blank=True, null=True)
     orderitemdate = models.DateTimeField(auto_now_add=True)
 # no def
+
+    @property
+    def get_total(self):
+        total = self.product.price * self.quantity
+        return total
+
+    @property
+    def get_quantity(self):
+        total = sum([self.quantity for item in self.product.order])
+        return total
 
 class Shipping(models.Model):
     customer = models.ForeignKey(Customer, null=True,on_delete=models.SET_NULL)

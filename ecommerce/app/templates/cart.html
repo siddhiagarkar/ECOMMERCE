@@ -14,10 +14,10 @@
 
             <div class="rows" style="display: flex; flex-direction: row; justify-content: space-between; margin: 10px;">
                     <div class="element">
-                        Items : 2   
+                        Items : 
                     </div>
                     <div class="element">
-                        Total : Rs. 400
+                        Total : ₹{{order.get_cart_total}}
                     </div>
                     <div class="element">
                         <a href = "{% url 'checkout' %}">
@@ -51,23 +51,26 @@
         </strong>
             <hr>
 
+            {% for item in items %}
             <div class="rows" style="display: flex; flex-direction: row; justify-content: space-between; margin: 10px;">
                 <div class="element">
-                    <img src=".." alt="img">
+                    <img src="{{item.product.imageURL}}" alt="img" height="150px" width="120px">
                 </div>
                 <div class="element">
-                    corset
+                    {{item.product.item}}
                 </div>
                 <div class="element">
-                    800
+                    ₹{{item.product.price}}
                 </div>
                 <div class="element">
-                    1
+                    {{item.quantity}}
                 </div>
                 <div class="element">
-                    800
+                    ₹{{item.get_total}}
                 </div>
             </div>
+            <hr>
+            {% endfor %}
        </div>
       </div>
 </body>
