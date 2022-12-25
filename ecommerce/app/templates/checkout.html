@@ -55,26 +55,27 @@
                 </a>
                 <hr>
                 <h2>Order Summary</h2>
+                {% for item in items %}
                 <hr>
                 <div class="rows" style="display: flex; flex-direction: row; justify-content: space-around; margin: 10px;">
                     <div class="element">
-                        <img src=".." alt="img">
+                        <img src="{{item.product.imageURL}}" alt="img" height="100px" width="80px">
                     </div>
                     <div class="element">
-                        corset
+                        {{item.product.item}}
                     </div>
                     <div class="element">
-                        x1
+                        x{{item.quantity}}
                     </div>
                     <div class="element">
-                        800
+                        ₹{{item.get_total}}
                     </div>
                 </div>
-
+                {% endfor %}
                 <hr>
 
-                <strong>Items : <br>
-                Total : 
+                <strong>Items : {order.get_cart_items} <br>
+                Total : ₹{{order.get_cart_total}}
                 </strong>
             </div>
           </div>
