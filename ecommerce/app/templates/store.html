@@ -11,8 +11,8 @@
               <img class="card-img-top" src="{{thing.imageURL}}" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">{{thing.item}}</h5>
-                <p class="card-text">Rs.{{thing.price}}</p>
-                <button class="btn btn-outline-primary add-btn update-cart" data-action="add" data-product={{thing.id}}>Add to cart</button>
+                <p class="card-text">₹{{thing.price}}</p>
+                <button class="btn btn-outline-primary add-btn update-cart" data-action="add" data-product={{thing.id}} onclick="myFunction()">Add to cart</button>
               </div>
               <div class="card-footer">
                 <small class="text-muted">in stock or sold out</small>
