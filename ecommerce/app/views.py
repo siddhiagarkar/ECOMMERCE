@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import JsonResponse
 from .models import *
+import json
 
 def store(suman):
     things = Product.objects.all()
@@ -31,4 +32,11 @@ def checkout(request):
     context = {'items': items, 'order': order}
     return render(request, 'checkout.html', context)
 
-# Create your views here.
+def updateItem(request):
+    data = json.loads(request.body)
+    prod_id = data['prod_id']
+    action = data['action']
+    print('Action : ', action)
+    print('Product : ', prod_id)
+
+    return JsonResponse('Item was added', safe=False)
