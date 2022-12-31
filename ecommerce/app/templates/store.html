@@ -3,8 +3,39 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/allstyle.css' %}">
 
+<style>
+  .searchfield{
+    display: flex;
+    justify-content: center;
+    
+  }
+  #inputfield{
+    background-color: rgb(240, 230, 209);
+    color: black;
+    border-color: rgb(240, 230, 209);
+    box-shadow: none;
+    border-radius: 10px;
+    margin-right: 8px;
+    padding-left: 10px;
+    width: 400px;
+  }
+
+  .btn btn-primary{
+    border-radius: 30px;
+  }
+
+</style>
+
 {% block content %}
     <body>
+      <div class="searchfield">
+        <input type="text" id="inputfield" placeholder="Search your products.." style="font-style:italic;">
+        <button type="button" class="btn btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg>
+        </button>
+      </div>
         <div class="row" style="margin:25px;justify-content: center;">
           {% for thing in things %}
             <div class="col-lg-3" style="background-color: rgb(242, 234, 212); border-radius: 12px; padding-top: 10px;padding-bottom: 10px; margin: 20px; justify-content: space-around;">
