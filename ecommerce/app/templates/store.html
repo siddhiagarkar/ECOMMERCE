@@ -15,7 +15,13 @@
                 <button class="btn btn-outline-primary add-btn update-cart" data-action="add" data-thing={{thing.id}} onclick="myFunction()">Add to cart</button>
               </div>
               <div class="card-footer">
-                <small class="text-muted">in stock or sold out</small>
+                <small class="text-muted">
+                  {% if thing.availability is True %}
+                    <strong style="color: green;">In stockk</strong>
+                  {% else %}
+                    <strong style="color: red;">Sold outt</strong>
+                  {% endif %}
+                </small>
               </div>
             </div>
           {% endfor %}

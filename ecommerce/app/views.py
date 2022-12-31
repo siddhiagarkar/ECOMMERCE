@@ -3,10 +3,10 @@ from django.http import JsonResponse
 from .models import *
 import json
 
-def store(suman):
+def store(request):
     things = Product.objects.all()
     context = {'things': things}
-    return render(suman, 'store.html', context)
+    return render(request, 'store.html', context)
 
 def cart(request):
     if request.user.is_authenticated:

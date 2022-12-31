@@ -19,6 +19,12 @@ class Product(models.Model):
     instocknumber = models.IntegerField(null=True)
     availability = models.BooleanField(null=True)
 
+    def clean(self):
+        if self.instocknumber == 0:
+            self.availability = False
+        else:
+            self.availability = True
+
     def __str__(self):
         return self.item
 
