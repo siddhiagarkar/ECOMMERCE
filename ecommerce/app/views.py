@@ -5,6 +5,15 @@ import json
 
 def store(request):
     things = Product.objects.all()
+    mylist=request.POST.getlist('gendercheck')
+
+    if request.GET.get('Apply') == 'Apply':
+        print('user clicked apply')
+        if 'Female' in mylist:
+            things = Product.objects.filter(tag = True)
+        elif 'Male' in mylist:
+            things = Product.objects.filter(tag = False)
+
     context = {'things': things}
     return render(request, 'store.html', context)
 
