@@ -51,3 +51,11 @@ def updateItem(request):
     print('Product : ', prod_id)
 
     return JsonResponse('Item was added', safe=False)
+
+def searchview(request):
+    things = Product.objects.all()
+    term = request.GET.get('searchname', None)
+    if term:
+        things=Product.objects.filter(item__icontains=term)
+    context = {'things': things}
+    return render(request,'store.html',context)
