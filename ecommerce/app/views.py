@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from .models import *
 import json
+from django.views.decorators.csrf import csrf_exempt
 
 def store(request):
     things = Product.objects.all()
@@ -41,10 +42,11 @@ def checkout(request):
     context = {'items': items, 'order': order}
     return render(request, 'checkout.html', context)
 
+@csrf_exempt
 def updateItem(request):
     data = json.loads(request.body)
-    prod_id = data['prod_id']
-    action = data['action']
+    prod_id = data.get('prod_id')
+    action = data.get('action')
     print('Action : ', action)
     print('Product : ', prod_id)
 
