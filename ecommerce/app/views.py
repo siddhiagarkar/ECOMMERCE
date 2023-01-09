@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from .models import *
 import json
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import authenticate, login, logout
 
 def store(request):
     things = Product.objects.all()
@@ -59,3 +60,32 @@ def searchview(request):
         things=Product.objects.filter(item__icontains=term)
     context = {'things': things}
     return render(request,'store.html',context)
+
+def filterview(request):
+    things = Product.objects.all()
+    mylist=request.GET.getlist('gendercheck')
+    if 'Male' in mylist:
+        things=Product.objects.filter(tag=False)
+    else:
+        things=Product.objects.filter(tag=True)
+    context = {'things': things}
+    return render(request,'store.html',context)
+
+def login_view(request):
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(request, user)
+        # Redirect to a success page.
+        return redirect('store')
+    else:
+        print('USER NOT FOUND')
+
+    context = {}
+    return render(request, 'login.html', context)
+
+def logout_view(request):
+    logout(request)
+    return redirect('store')
+    # Redirect to a success page.

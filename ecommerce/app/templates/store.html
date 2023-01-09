@@ -27,11 +27,17 @@
 
 {% block content %}
     <body>
+{% if user.is_authenticated %}
+  Hi {{ user.username }}!
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a>
+{% endif %}
       <div class="filter-and-search" style="display: flex; flex-direction:row; justify-content:center; justify-content:space-evenly;">
         <form action="{% url 'searched_item' %}" method="GET">
       <div class="searchfield">
         <input type="text" id="inputfield" placeholder="Search your products.." name="searchname" style="font-style:italic;">
-        <button type="button" class="btn btn-primary">
+        <button type="submit" class="btn btn-primary">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
           </svg>
@@ -76,17 +82,20 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      
       <div class="modal-body">
+        <form method='GET' action="{% url 'filtered_item' %}"></form>
         Gender : <input type="checkbox" name="gendercheck" value="Female"> Women
-        <input type="checkbox" name="gendercheck" value="Male"> Men
+                 <input type="checkbox" name="gendercheck" value="Male"> Men
       </div>
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <form method='get' action='#'>
-        <input type="button" class="btn btn-primary" type="submit" value="Apply" name="Apply">
-        </form>
+      
+        <input class="btn btn-primary" type="submit" value="Apply" name="Apply">
+      </form>
       </div>
+
     </div>
   </div>
 </div>
