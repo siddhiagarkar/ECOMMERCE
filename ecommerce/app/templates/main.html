@@ -55,14 +55,34 @@
   background: #000000; 
 }
 
+.login-logout-btns{
+  display: flex;
+  flex-direction: row;
+}
+
+#login-btn{
+  margin-right: 10px;
+}
+
     </style>
 </head>
 <body>
 <!-- Just an image -->
 <nav class="navbar navbar-dark bg-dark">
-    <button type="button" class="btn btn-warning" style="display: flex; justify-content: right;"><a href="{% url 'login' %}">Login</button>
-    <button type="button" class="btn btn-warning" style="display: flex; justify-content: right;"><a href="{% url 'logout' %}">Logout</button>
-    <a href="{% url 'store' %}">Store</a>
+
+  {% block content %}
+  <div id="status">  u r not loggedin
+  </div>
+  {% endblock %}
+
+  <div class="login-logout-btns">
+    <button id="login-btn" type="button" class="btn btn-warning"><a href="{% url 'login' %}">Login</button>
+    <button id="login-btn" type="button" class="btn btn-warning"><a href="{% url 'logout' %}">Logout</button>
+    <button id="login-btn" type="button" class="btn btn-warning"><a href="{% url 'store' %}">Store</a>
+
+  </div>
+  
+
   </nav>
 <br><br>
 
