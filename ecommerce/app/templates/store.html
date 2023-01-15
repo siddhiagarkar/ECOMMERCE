@@ -26,15 +26,6 @@
 </style>
 
 <body>
-
-<div id="status">
-{% if user.is_authenticated %}
-  Hi {{ user.username }}!
-{% else %}
-  <p>You are not logged in</p>
-{% endif %}
-</div>
-
       <div class="filter-and-search" style="display: flex; flex-direction:row; justify-content:center; justify-content:space-evenly;">
         <form action="{% url 'searched_item' %}" method="GET">
       <div class="searchfield">

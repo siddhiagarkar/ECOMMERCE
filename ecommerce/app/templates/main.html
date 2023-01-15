@@ -63,21 +63,31 @@
 #login-btn{
   margin-right: 10px;
 }
-
+.status{
+  color: rgb(192, 182, 154);
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
     </style>
 </head>
 <body>
 <!-- Just an image -->
 <nav class="navbar navbar-dark bg-dark">
 
-  {% block content %}
-  <div id="status">  u r not loggedin
-  </div>
-  {% endblock %}
+  {% block thiscontent %}
+  <div class="status">
+    {% if user.is_authenticated %}
+      Hi {{ user.username }}!
+    {% else %}
+      <p>You are not logged in</p>
+    {% endif %}
+    </div>  {% endblock thiscontent %}
 
   <div class="login-logout-btns">
-    <button id="login-btn" type="button" class="btn btn-warning"><a href="{% url 'login' %}">Login</button>
+    {% if user.is_authenticated %}
     <button id="login-btn" type="button" class="btn btn-warning"><a href="{% url 'logout' %}">Logout</button>
+    {% else %}
+    <button id="login-btn" type="button" class="btn btn-warning"><a href="{% url 'login' %}">Login</button>
+    {% endif %}
     <button id="login-btn" type="button" class="btn btn-warning"><a href="{% url 'store' %}">Store</a>
 
   </div>

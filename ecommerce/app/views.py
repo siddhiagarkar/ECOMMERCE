@@ -45,13 +45,14 @@ def checkout(request):
 
 @csrf_exempt
 def updateItem(request):
-    data = json.loads(request.body)
-    prod_id = data.get('prod_id')
-    action = data.get('action')
-    print('Action : ', action)
-    print('Product : ', prod_id)
-
-    return JsonResponse('Item was added', safe=False)
+    if request.method=="POST":
+        data = json.loads(request.body)
+        prod_id = data['ProductID']
+        action = data['Action']
+        
+        print('Action : ', action)
+        print('Product id : ', prod_id)
+        return JsonResponse('Item was added', safe=False)
 
 def searchview(request):
     things = Product.objects.all()
