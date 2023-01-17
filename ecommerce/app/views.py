@@ -4,6 +4,7 @@ from .models import *
 import json
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm
 
 def store(request):
     things = Product.objects.all()
@@ -90,3 +91,14 @@ def logout_view(request):
     logout(request)
     return redirect('store')
     # Redirect to a success page.
+
+def registration_view(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            #log the user in
+            return redirect('login')
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration.html', {'form': form})
