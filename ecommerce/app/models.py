@@ -8,7 +8,7 @@ class Customer(models.Model):
     email = models.EmailField(null=True)
 
     def __str__(self):
-        return self.name
+        return self.user
 
 class Product(models.Model):
     item = models.CharField(null=True, max_length= 200)

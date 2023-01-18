@@ -49,10 +49,23 @@ def updateItem(request):
     if request.method=="POST":
         data = json.loads(request.body)
         prod_id = data['ProductID']
-        action = data['Action']
-        
+        action = data['Action']       
         print('Action : ', action)
         print('Product id : ', prod_id)
+
+        customer, created = Customer.objects.get_or_create(user=request.user)
+        product = Product.objects.get(id = prod_id)
+        order, created = Order.objects.get_or_create(customer=customer, complete = False)
+        orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
+
+        if action=='add':
+            orderItem.quantity = (orderItem.quantity+1)
+        elif action=='remove':
+            orderItem.quantity = (orderItem.quantity-1)
+        orderItem.save()
+        if orderItem.quantity<=0:
+            orderItem.delete()
+
         return JsonResponse('Item was added', safe=False)
 
 def searchview(request):

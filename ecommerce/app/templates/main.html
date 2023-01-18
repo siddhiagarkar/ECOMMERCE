@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/allstyle.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="icon" href="{% static 'images/hanger.png' %}" sizes="16x16 32x32">
 
@@ -89,7 +90,7 @@
     <button id="login-btn" type="button" class="btn btn-warning"><a href="{% url 'login' %}">Login</button>
     {% endif %}
     <button id="login-btn" type="button" class="btn btn-warning"><a href="{% url 'store' %}">Store</a>
-
+    <button id="login-btn" type="button" class="btn btn-warning"><a href="{% url 'cart' %}"><i class="fa fa-shopping-cart" style="font-size:36px"></i></a>
   </div>
   
 
