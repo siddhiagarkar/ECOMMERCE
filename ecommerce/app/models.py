@@ -15,7 +15,7 @@ class Product(models.Model):
     image = models.ImageField(blank=True, null=True)
     price = models.IntegerField(null = True)
     TAG_CHOICES = ((True, 'Women'), (False, 'Men'))
-    tag = models.BooleanField(choices = TAG_CHOICES, null=None)
+    tag = models.BooleanField(choices = TAG_CHOICES, null=None, default=True)
     instocknumber = models.IntegerField(null=True)
     availability = models.BooleanField(null=True)
 
