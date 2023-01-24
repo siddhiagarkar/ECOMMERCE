@@ -84,7 +84,21 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-      
+        <input class="btn btn-primary" type="submit" value="Apply" name="Apply">
+      </form>
+      </div>
+
+      <div class="modal-body">
+        <form method='POST' action="{% url 'products_by_colours' %}">
+        {% csrf_token %}
+        Colour:
+        {% for clr in colorz %}
+        <input type="checkbox" name="color" value="{{clr}}"> {{clr}}
+        {% endfor %}
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>     
         <input class="btn btn-primary" type="submit" value="Apply" name="Apply">
       </form>
       </div>

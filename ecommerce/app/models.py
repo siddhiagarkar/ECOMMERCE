@@ -18,6 +18,7 @@ class Product(models.Model):
     tag = models.BooleanField(choices = TAG_CHOICES, null=None, default=True)
     instocknumber = models.IntegerField(null=True)
     availability = models.BooleanField(null=True)
+    color = models.CharField(null=True, max_length= 20)
 
     def clean(self):
         if self.instocknumber == 0:

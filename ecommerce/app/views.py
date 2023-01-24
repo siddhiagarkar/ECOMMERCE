@@ -8,16 +8,9 @@ from django.contrib.auth.forms import UserCreationForm
 
 def store(request):
     things = Product.objects.all()
-    mylist=request.POST.getlist('gendercheck')
-
-    if request.GET.get('Apply') == 'Apply':
-        print('user clicked apply')
-        if 'Female' in mylist:
-            things = Product.objects.filter(tag = True)
-        elif 'Male' in mylist:
-            things = Product.objects.filter(tag = False)
-
-    context = {'things': things}
+    colorzz = list(Product.objects.all().values('color').distinct())
+    colorz = [u['color'] for u in colorzz]
+    context = {'things': things, 'colorz': colorz, 'colorzz': colorzz}
     return render(request, 'store.html', context)
 
 def cart(request):
@@ -73,7 +66,11 @@ def searchview(request):
     term = request.GET.get('searchname', None)
     if term:
         things=Product.objects.filter(item__icontains=term)
-    context = {'things': things}
+
+    colorzz = list(Product.objects.all().values('color').distinct())
+    colorz = [u['color'] for u in colorzz]
+
+    context = {'things': things, 'colorz': colorz}
     return render(request,'store.html',context)
 
 def filterview(request):
@@ -81,9 +78,34 @@ def filterview(request):
     mylist=request.GET.getlist('gendercheck')
     if 'Male' in mylist:
         things=Product.objects.filter(tag=False)
+    elif 'Men' and 'Women' in mylist:
+        things=Product.objects.all()
     else:
         things=Product.objects.filter(tag=True)
-    context = {'things': things}
+
+    colorzz = list(Product.objects.all().values('color').distinct())
+    colorz = [u['color'] for u in colorzz]
+    context = {'things': things, 'colorz': colorz}
+    return render(request,'store.html',context)
+
+def colorview(request):
+    things = Product.objects.all()
+    if request.method == 'POST':
+        colorz=request.POST.getlist('color')
+        print(colorz)
+
+        for x in range(len(colorz)):
+            print("my chosen colour",(x+1) , colorz[x])
+
+        if colorz is not None:
+            print('you selected a color filter!')
+            for x in range(len(colorz)):
+                things = Product.objects.filter(color = colorz[x])
+
+    colorzz = list(Product.objects.all().values('color').distinct())
+    colorz = [u['color'] for u in colorzz]
+
+    context = {'things': things, 'colorz': colorz}
     return render(request,'store.html',context)
 
 def login_view(request):
