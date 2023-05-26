@@ -4,12 +4,12 @@
   <div class="context">
     <div class="card">
     <h1>Login</h1>
-<form method="POST" action="">
+<form method="POST" action="/login/">
   {% csrf_token %}
   <input class="search-bar" name="username" type="text" placeholder="Username"><br>
   <input class="search-bar" name="password" type="password" placeholder="Password"><br>
   <button type="submit" style="margin-left: 50px;">Log In</button>
-</form>
+</form><br>
 Don't have an account? <a href="{% url 'register' %}">Sign Up</a>
 </div>
 </div>
