@@ -19,6 +19,9 @@
   {% csrf_token %}
   <input class="search-bar" name="username" type="text" placeholder="Username"><br>
   <input class="search-bar" name="password" type="password" placeholder="Password"><br>
+  {% if messages %}
+    <p style="color: red;">{{ message }}</p>
+  {% endif %}
   <button type="submit" style="margin-left: 50px;">Log In</button>
 </form><br>
 Don't have an account? <a href="{% url 'register' %}" style="color: rgb(184, 236, 236);">Sign Up</a>

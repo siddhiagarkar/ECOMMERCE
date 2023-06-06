@@ -67,6 +67,66 @@
         FILTER SEARCH
         </button> -->
       </div>
+
+      <hr style="border: 0.2px solid rgb(184, 184, 233);">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid text-success">
+            <button class="navbar-toggler"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#gfgnavbar">
+                <span class="navbar-toggler-icon">
+                </span>
+            </button>
+            <div class="collapse navbar-collapse ps-3" 
+                 id="gfgnavbar">
+                <ul class="navbar-nav">
+                    <div class="nav-item">
+                        <a class="nav-link" data-toggle="modal" data-target="#exampleModalCenter" style="color: #0000008C; cursor: pointer;">
+                            Filter
+                        </a>
+                      </div>
+                    <div class="dropdown">
+                      <a class="dropdown dropdown-toggle nav-link" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="color: #0000008C">
+                        Sort by
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li>
+                          <form method='post' action="{% url 'sorted_products' %}">
+                            {% csrf_token %}
+                          <input type="submit" class="dropdown-item" name="sort" value="Price: High to Low">
+                          </form>
+                        </li>
+                        <li>
+                          <form method='post' action="{% url 'sorted_products' %}">
+                            {% csrf_token %}
+                          <input type="submit" class="dropdown-item" name="sort" value="Price: Low to High">
+                          </form>
+                        </li>
+                        <li>
+                          <form method='post' action="{% url 'sorted_products' %}">
+                            {% csrf_token %}
+                          <input type="submit" class="dropdown-item" name="sort" value="New Arrival">
+                          </form>
+                        </li>
+                        <li>
+                          <form method='post' action="{% url 'sorted_products' %}">
+                            {% csrf_token %}
+                          <input type="submit" class="dropdown-item" name="sort" value="Better Discount">
+                          </form>
+                        </li>
+                        <li>
+                          <form method='post' action="{% url 'sorted_products' %}">
+                            {% csrf_token %}
+                          <input type="submit" class="dropdown-item" name="sort" value="Rating">
+                          </form>
+                        </li>
+                      </ul>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </nav>
+      <hr style="border: 0.2px solid rgb(184, 184, 233);">
         <div class="row" style="margin:25px;justify-content: center;">
           {% for thing in things %}
             <div class="col-lg-3" style="background-color: #d9dbe4; border-radius: 12px; padding-top: 10px;padding-bottom: 10px; margin: 20px; justify-content: space-around;">
