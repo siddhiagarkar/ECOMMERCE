@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,6 +7,10 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/allstyle.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <link href=
+"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" 
+          rel="stylesheet">
+   
     <link rel="icon" href="{% static 'images/hanger.png' %}" sizes="16x16 32x32">
 
     <script type="text/javascript">
@@ -47,13 +50,13 @@
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgb(7, 0, 0); 
+  background: #606684; 
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #000000; 
+  background: #3f4560; 
 }
 
 .login-logout-btns{
@@ -68,33 +71,70 @@
   color: rgb(192, 182, 154);
   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
+a:active{
+  color: rgb(181, 154, 192);
+}
     </style>
 </head>
 <body>
 <!-- Just an image -->
-<nav class="navbar navbar-dark bg-dark">
+<!-- <nav class="navbar navbar-dark bg-dark"> -->
 
   {% block thiscontent %}
-  <div class="status">
-    {% if user.is_authenticated %}
-      Hi {{ user.username }}!
-    {% else %}
-      <p>You are not logged in</p>
-    {% endif %}
-    </div>  {% endblock thiscontent %}
+  <div>
+    <br>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid text-success">
+            <h4>Flourishh</h4>
+            <button class="navbar-toggler"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#gfgnavbar">
+                <span class="navbar-toggler-icon">v
+                </span>
+            </button>
+            <div class="collapse navbar-collapse ps-3" 
+                 id="gfgnavbar">
+                <ul class="navbar-nav">
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Home
+                        </a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'store' %}">
+                            Store
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'cart' %}">
+                            Cart
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'cart' %}">
+                            Profile
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'cart' %}">
+                            <!-- {{request.user}} -->
+                            {% if request.user.is_authenticated %}
+                              <span class="status">Hello {{request.user}}</span>
+                            {% else %}
+                              <span class="status">offline</span>
+                            {% endif %}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
 
-  <div class="login-logout-btns">
-    {% if user.is_authenticated %}
-    <button id="login-btn" type="button" class="btn btn-warning"><a href="{% url 'logout' %}">Logout</button>
-    {% else %}
-    <button id="login-btn" type="button" class="btn btn-warning"><a href="{% url 'login' %}">Login</button>
-    {% endif %}
-    <button id="login-btn" type="button" class="btn btn-warning"><a href="{% url 'store' %}">Store</a>
-    <button id="login-btn" type="button" class="btn btn-warning"><a href="{% url 'cart' %}"><i class="fa fa-shopping-cart" style="font-size:36px"></i></a>
-  </div>
-  
+  {% endblock %}
 
-  </nav>
+  <!-- </nav> -->
 <br><br>
 
 <!-- CSS only -->
@@ -105,5 +145,8 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script type="text/javascript" src="{% static '/js/mycart.js' %}"></script>
+<script src=
+"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js">
+    </script>
 </body>
 </html>

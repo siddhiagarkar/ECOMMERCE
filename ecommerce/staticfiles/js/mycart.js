@@ -23,7 +23,7 @@ function updateUserOrder(prod_id, action){
     console.log('User is authenticated, sending data..')
     var url = '/update_item/'
 
-    fetch(url, {
+    fetch('http://localhost:3002', {
         method : 'POST',
         headers : {'Content-Type': 'application/json', 'X-CSRF-TOKEN': csrftoken,},
         body : JSON.stringify({'Product ID': prod_id, 'Action': action}),

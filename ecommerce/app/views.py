@@ -131,7 +131,9 @@ def registration_view(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
+            user = models.OneToOneField(User, on_delete=models.CASCADE, related_name = 'customer', null=True, blank=True)
             form.save()
+
             #log the user in
             return redirect('login')
     else:

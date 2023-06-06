@@ -5,47 +5,71 @@
 <style>
   .searchfield{
     display: flex;
+    flex-direction: row;
     justify-content: center;
+    align-items: center;
+    width: 100%;
   }
   
   #inputfield{
-    background-color: rgb(240, 230, 209);
-    color: black;
-    border-color: rgb(240, 230, 209);
-    box-shadow: none;
-    border-radius: 10px;
-    margin-right: 8px;
-    padding-left: 10px;
-    width: 400px;
-  }
-
-  .btn btn-primary{
+    width: 100%;
+    height: 50px;
     border-radius: 30px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 18px;
+    background-color: #f2f3f7;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-left: 10px;
+    margin-right: 10px;
   }
 
+  #s{
+    border-radius: 50px;
+    border: 1px solid #ccc;
+    padding: 13px;
+    font-size: 18px;
+    background-color: #7890ef;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  body{
+    background-color: #f2f3f7;
+  }
+
+
+  /* @media (max-width:805px){
+        body{
+        background-color: #19234a;
+      }
+
+    } */
 </style>
 
 <body>
       <div class="filter-and-search" style="display: flex; flex-direction:row; justify-content:center; justify-content:space-evenly;">
         <form action="{% url 'searched_item' %}" method="GET">
       <div class="searchfield">
-        <input type="text" id="inputfield" placeholder="Search your products.." name="searchname" style="font-style:italic;">
-        <button type="submit" class="btn btn-primary">
+        <input type="text" id="inputfield" placeholder="Search here..." name="searchname" style="font-style:italic;">
+        <button type="submit" class="btn btn-primary" id="s">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
           </svg>
         </button>
       </form>
       </div>
+      
 
       <!-- Button trigger modal -->
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter">
+        <!-- <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter">
         FILTER SEARCH
-        </button>
+        </button> -->
       </div>
         <div class="row" style="margin:25px;justify-content: center;">
           {% for thing in things %}
-            <div class="col-lg-3" style="background-color: rgb(242, 234, 212); border-radius: 12px; padding-top: 10px;padding-bottom: 10px; margin: 20px; justify-content: space-around;">
+            <div class="col-lg-3" style="background-color: #d9dbe4; border-radius: 12px; padding-top: 10px;padding-bottom: 10px; margin: 20px; justify-content: space-around;">
               <img class="card-img-top" src="{{thing.imageURL}}" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">{{thing.item}}</h5>
