@@ -128,10 +128,14 @@ def logout_view(request):
     # Redirect to a success page.
 
 def registration_view(request):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name = 'customer', null=True, blank=True)
+    e = request.POST.get('email')
+    n = request.POST.get('username')
+    u = request.user
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            user = models.OneToOneField(User, on_delete=models.CASCADE, related_name = 'customer', null=True, blank=True)
+            fld = Customer.objects.create(userr = u, name = n, email = e)
             form.save()
 
             #log the user in
