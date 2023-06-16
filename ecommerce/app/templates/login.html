@@ -1,16 +1,5 @@
 {% load static %}
 {% include 'main2.html' %}
-<style>
-  .area{
-    background: #a1d4f6;  
-    background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);  
-    width: 100%;
-    height:100vh;
-}
-.card{
-    background: #000822d0;
-}
-</style>
 <body>
   <div class="context">
     <div class="card">
@@ -19,13 +8,13 @@
   {% csrf_token %}
   <input class="search-bar" name="username" type="text" placeholder="Username"><br>
   <input class="search-bar" name="password" type="password" placeholder="Password"><br>
-  {% if messages %}
+  <!-- {% if messages %}
     <p style="color: red;">{{ message }}</p>
-  {% endif %}
+  {% endif %} -->
   <button type="submit" style="margin-left: 50px;">Log In</button>
 </form><br>
 Don't have an account? <a href="{% url 'register' %}" style="color: rgb(184, 236, 236);">Sign Up</a>
 </div>
 </div>
-</body>
+</body> 
 </html>

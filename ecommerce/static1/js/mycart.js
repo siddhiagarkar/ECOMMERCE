@@ -1,5 +1,6 @@
 var updateBtns = document.getElementsByClassName('update-cart');
 var i=0;
+console.log('hey');
 function myFunction(){
     for(i=0; i< updateBtns.length; i++){
         updateBtns[i].addEventListener('click', function(){

@@ -1,10 +1,22 @@
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% load static %}
+    
     <link rel="stylesheet" type="text/css" href="{% static 'css/style2.css' %}">
+    <style>
+        .area{
+        background: #a1d4f6;  
+        background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);  
+        width: 100%;
+        height:100vh;
+        }
+        card{
+            background: #000822d0;
+        }
+    </style>
 </head>
 <body>
     {% block content %}
@@ -13,7 +25,7 @@
     {% endblock content %}
 
 
-<div class="area" >
+<div class="area">
             <ul class="circles">
                     <li></li>
                     <li></li>
