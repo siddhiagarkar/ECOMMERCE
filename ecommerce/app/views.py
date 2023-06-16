@@ -161,7 +161,7 @@ def registration_view(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            fld = Customer.objects.create(userr = u, name = n, email = e)
+            fld = Customer.objects.create(user = u, name = n, email = e)
             form.save()
             #log the user in
             return redirect('login')
