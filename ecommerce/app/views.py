@@ -9,9 +9,11 @@ from django.contrib import messages
 
 def store(request):
     things = Product.objects.all()
+    carousels = Carousel.objects.all()
+    num = len(carousels)-1
     colorzz = list(Product.objects.all().values('color').distinct())
     colorz = [u['color'] for u in colorzz]
-    context = {'things': things, 'colorz': colorz, 'colorzz': colorzz}
+    context = {'things': things, 'colorz': colorz, 'colorzz': colorzz, 'carousels': carousels, 'num': num}
     return render(request, 'store.html', context)
 
 def cart(request):

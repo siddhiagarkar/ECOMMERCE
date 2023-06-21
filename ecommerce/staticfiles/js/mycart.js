@@ -1,6 +1,6 @@
 var updateBtns = document.getElementsByClassName('update-cart');
 var i=0;
-console.log('hey');
+console.log('hello');
 function myFunction(){
     for(i=0; i< updateBtns.length; i++){
         updateBtns[i].addEventListener('click', function(){
@@ -8,9 +8,9 @@ function myFunction(){
             var action = this.dataset.action
             console.log('Product ID : ',prod_id, ' Action : ',action);
 
-            // userr variable is declared in the 'main' html file so it can be accessed on all pages
-            console.log('User: ',userr)
-            if(userr=='AnonymousUser'){
+            // user variable is declared in the 'main' html file so it can be accessed on all pages
+            console.log('User: ',user)
+            if(user=='AnonymousUser'){
                 console.log('User is not authenticated');
             }
             else{
