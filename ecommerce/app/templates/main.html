@@ -78,9 +78,6 @@ a:active{
     </style>
 </head>
 <body>
-<!-- Just an image -->
-<!-- <nav class="navbar navbar-dark bg-dark"> -->
-
   {% block thiscontent %}
   <div>
     <br>
@@ -96,11 +93,6 @@ a:active{
             <div class="collapse navbar-collapse ps-3" 
                  id="gfgnavbar">
                 <ul class="navbar-nav">
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            Home
-                        </a>
-                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'store' %}">
                             Store
@@ -118,7 +110,6 @@ a:active{
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'cart' %}">
-                            <!-- {{request.user}} -->
                             {% if request.user.is_authenticated %}
                               <span class="status">Hello {{request.user}}</span>
                             {% else %}

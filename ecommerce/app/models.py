@@ -105,3 +105,28 @@ class Shipping(models.Model):
 
     def __str__(self):
         return self.address
+    
+class Message(models.Model):
+    email = models.EmailField(null=True)
+    subject = models.CharField(null=True, max_length= 200)
+
+    def __str__(self):
+        return self.email
+    
+SIZE_CHOICES = (
+    ("XXS", "XXS"),
+    ("XS", "XS"),
+    ("S", "S"),
+    ("M", "M"),
+    ("L", "L"),
+    ("XL", "XL"),
+    ("XXL", "XXL"),
+    ("XXXL", "XXXL"),
+)   
+class Size(models.Model):
+    product = models.ForeignKey(Product, null=True, on_delete=models.SET_NULL)
+    size = models.CharField(null=True, max_length= 20, choices=SIZE_CHOICES, default='M')
+    quantity = models.IntegerField(null=True, blank = True)
+
+    def __str__(self):
+        return self.product.item + " " + self.size
