@@ -4,6 +4,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200&family=Caveat:wght@500&family=Crimson+Text:ital@1&family=Dancing+Script:wght@700&family=Moo+Lah+Lah&family=Orbitron&family=Playfair:opsz,wght@5..1200,300&display=swap" rel="stylesheet">
+
+
     <link rel="stylesheet" type="text/css" href="{% static 'css/allstyle.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -75,15 +81,25 @@
 a:active{
   color: rgb(181, 154, 192);
 }
+
+.nav-link{
+  color:aliceblue;
+  font-family: Assistant,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  letter-spacing: 2.5px;
+}
+
+.nav-link:hover{
+  color:aliceblue;
+}
+
     </style>
 </head>
 <body>
   {% block thiscontent %}
   <div>
-    <br>
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid text-success">
-            <h4>Flourishh</h4>
+    <nav class="navbar navbar-expand-lg" style="background-color: #292c2f;">
+        <div class="container-fluid text-info">
+            <h4 style="color: rgb(119, 234, 238); font-family: 'Caveat', cursive; font-size:x-large; padding-right: 25px;">Flourishh</h4>
             <button class="navbar-toggler"
                     data-bs-toggle="collapse"
                     data-bs-target="#gfgnavbar">
@@ -95,25 +111,63 @@ a:active{
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'store' %}">
-                            Store
+                            STORE
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'cart' %}">
-                            Cart
+                            CART
                         </a>
                     </li>
+                    {% if request.user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'cart' %}">
-                            Profile
-                        </a>
+                        <!-- <a class="nav-link" href="#"> -->
+                          <div class="dropdown">    
+                            
+                              <a class="nav-link">
+                                <a class="dropdown dropdown-toggle nav-link" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="color:aliceblue; font-family: Assistant,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;">
+                                  SETTINGS
+                              </a>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                              <li>
+                                <form method='post' action="#">
+                                  {% csrf_token %}
+                                <input type="submit" class="dropdown-item" name="view-profile" value="View Profile">
+                                </form>
+                              </li>
+                              <li>
+                                <form method='post' action="#">
+                                  {% csrf_token %}
+                                <input type="submit" class="dropdown-item" name="my-orders" value="My Orders">
+                                </form>
+                              </li>
+                              <li>
+                                <form method='post' action="/logout/">
+                                  {% csrf_token %}
+                                <input type="submit" class="dropdown-item" name="log-out" value="Logout">
+                                </form>
+                              </li>
+                            </ul>
+                          </div>
+                        <!-- </a> -->
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'login' %}">
+                        <span class="status" style="font-family: Assistant,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;">LOGIN</span>
+                      </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'cart' %}">
+                      <a class="nav-link" href="{% url 'register' %}">
+                        <span class="status" style="font-family: Assistant,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;">SIGNUP</span>
+                      </a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link">
                             {% if request.user.is_authenticated %}
-                              <span class="status">Hello {{request.user}}</span>
-                            {% else %}
-                              <span class="status">offline</span>
+                              <span class="status" style="font-family: Assistant,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;">HI {{request.user|upper}}</span>
                             {% endif %}
                         </a>
                     </li>
