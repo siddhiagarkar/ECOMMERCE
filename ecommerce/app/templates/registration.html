@@ -1,4 +1,17 @@
 {% include 'main2.html' %}
+<style>
+  input.search-bar {
+   width: 100%;
+   padding-left: 30px;
+   padding-right: 30px;
+}
+
+input.search-bar:hover{
+    background-color: rgb(2, 17, 32);
+    transition: 0.3s ease-in-out;
+}
+
+</style>
 <body>
   <div class="context">
     <div class="card">
@@ -6,6 +19,8 @@
 <form method="POST" action="/register/">
   {% csrf_token %}
   <input class="search-bar" name="username" type="text" placeholder="Username"><br>
+  <input class="search-bar" name="first_name" type="text" placeholder="First Name"><br>
+  <input class="search-bar" name="last_name" type="text" placeholder="Last Name"><br>
   <input class="search-bar" name="email" type="email" placeholder="Email id"><br>
   <input class="search-bar" name="password1" type="password" placeholder="Password"><br>
   <input class="search-bar" name="password2" type="password" placeholder="Password confirmation"><br>

@@ -7,6 +7,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 
+from .forms import CreateUserForm
+
 def store(request):
     things = Product.objects.all()
     carousels = Carousel.objects.all()
@@ -169,14 +171,15 @@ def logout_view(request):
 def registration_view(request):
 
     n = request.POST.get('username')
-    
+    e = request.POST.get('email')
+
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CreateUserForm(request.POST)
         if form.is_valid():
             
             form.save() #GOLDEN LINE : Create Customer object after saving the form
             u=User.objects.get(username=n) #GOLDEN LINE
-            Customer.objects.create(user = u, name = u.username, email = u.email) #GOLDEN LINE
+            Customer.objects.create(user = u, f_name = u.first_name, l_name= u.last_name, email = u.email) #GOLDEN LINE
 
             #log the user in
             return redirect('login')
@@ -184,7 +187,7 @@ def registration_view(request):
             messages.error(request, 'Error')
             print('error')
     else:
-        form = UserCreationForm()
+        form = CreateUserForm()
     return render(request, 'registration.html', {'form': form})
 
 # def msg_view(request):

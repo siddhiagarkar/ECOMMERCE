@@ -168,7 +168,7 @@ a:active{
                     <li class="nav-item">
                         <a class="nav-link">
                             {% if request.user.is_authenticated %}
-                              <span class="status" style="font-family: Assistant,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;">HI {{request.user|upper}}</span>
+                              <span class="status" style="font-family: Assistant,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;">HI {{request.user.first_name|upper}}</span>
                             {% endif %}
                         </a>
                     </li>

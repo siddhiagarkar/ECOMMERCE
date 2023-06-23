@@ -28,11 +28,12 @@ class Carousel(models.Model):
     
 class Customer(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
-    name = models.CharField(null=True, max_length=40)
+    f_name = models.CharField(null=True, max_length=40)
+    l_name = models.CharField(null=True, max_length=40)
     email = models.EmailField(null=True)
 
     def __str__(self):
-        return self.name
+        return self.f_name
 
 class Product(models.Model):
     item = models.CharField(null=True, max_length= 200)
