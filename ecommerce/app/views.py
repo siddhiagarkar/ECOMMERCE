@@ -52,16 +52,18 @@ def checkout(request):
     context = {'items': items, 'order': order}
     return render(request, 'checkout.html', context)
 
-@csrf_exempt
+# @csrf_exempt
 def updateItem(request):
-    if request.method=="POST":
+    # if request.method=="POST":
+
         data = json.loads(request.body)
-        prod_id = data['ProductID']
-        action = data['Action']       
+        # prod_id = data['ProductID']
+        action = data['action'] 
+        prod_id = data['productId']
+              
         print('Action : ', action)
         print('Product id : ', prod_id)
 
-        # customer, created = Customer.objects.get_or_create(user=request.user)
         customer = request.user.customer
         product = Product.objects.get(id = prod_id)
         order, created = Order.objects.get_or_create(customer=customer, complete = False)
@@ -189,14 +191,5 @@ def registration_view(request):
     else:
         form = CreateUserForm()
     return render(request, 'registration.html', {'form': form})
-
-# def msg_view(request):
-#     e = request.POST.get('em')
-#     m = request.POST.get('msg')
-
-#     if request.method == 'POST':
-#         message = Message.objects.create(email = e, subject = m)
-
-#     return render(request, 'store.html')
 
 
