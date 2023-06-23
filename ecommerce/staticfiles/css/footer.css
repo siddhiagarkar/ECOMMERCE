@@ -60,10 +60,11 @@ footer .form-control {
 }
 
 .fa{
-    color: rgb(222, 196, 220);
+    color: rgb(168, 146, 166);
 }
 
+
 #sendbtn{
-    background-color: rgb(35, 122, 228);
+    background-color: rgb(12, 71, 142);
     color: rgb(252, 251, 251);
 }

@@ -3,6 +3,12 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+class Brand(models.Model):
+    name = models.CharField(null=True, max_length= 200)
+
+    def __str__(self):
+        return self.name
+
 class Carousel(models.Model):
     image = models.ImageField(blank=True, null=True)
     slide_number = models.IntegerField(null=True)
@@ -21,19 +27,20 @@ class Carousel(models.Model):
         return url
     
 class Customer(models.Model):
-    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE, related_name="customer")
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     name = models.CharField(null=True, max_length=40)
     email = models.EmailField(null=True)
 
     def __str__(self):
-        return self.user.username
+        return self.name
 
 class Product(models.Model):
     item = models.CharField(null=True, max_length= 200)
     image = models.ImageField(blank=True, null=True)
     price = models.IntegerField(null = True)
-    sale = models.OneToOneField(Carousel, null=True, blank=True, on_delete=models.CASCADE, related_name="sale")
-    saleprice = models.IntegerField(null = True)
+    sale = models.ForeignKey(Carousel, null=True, blank=True, on_delete=models.CASCADE, related_name="sale")
+    brand = models.ForeignKey(Brand, null=True, blank=True, on_delete=models.CASCADE, related_name="brand")
+    saleprice = models.IntegerField(null = True, blank=True)
     TAG_CHOICES = ((True, 'Women'), (False, 'Men'))
     tag = models.BooleanField(choices = TAG_CHOICES, null=None, default=True)
     instocknumber = models.IntegerField(null=True)

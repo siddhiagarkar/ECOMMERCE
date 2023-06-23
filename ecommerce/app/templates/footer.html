@@ -1,6 +1,12 @@
 {% block footer %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+<style>
+    #sendbtn:hover{
+  color: white;
+  background-color: rgb(24, 93, 177);
+}
+</style>
 <footer class="footer">
     <div class="container">
         <div class="row">
@@ -36,17 +42,23 @@
             <div class="col-md-6">
                 <h5 class="text-md-center">Contact Us</h5>
                 <hr>
-                <form>
+                <form method="POST">
+                    {% csrf_token %}
                     <fieldset class="form-group">
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" name="em">
                     </fieldset>
                     <fieldset class="form-group">
-                        <textarea class="form-control" id="exampleMessage" placeholder="Message"></textarea>
+                        <textarea class="form-control" id="exampleMessage" placeholder="Message" name="msg"></textarea>
                     </fieldset>
+                    {% if request.method == 'POST' %}
+                    
+                    <h5 style="color: rgb(26, 209, 53); display: flex; justify-content: center;">MESSAGE SENT!</h5>
+                    {% endif %}
                     <fieldset class="form-group text-md-center">
-                        <button type="button" class="btn btn-secondary-outline-primary btn-lg" id="sendbtn">Send</button>
+                        <button type="submit" class="btn btn-secondary-outline-primary btn-lg" id="sendbtn">Send</button>
                     </fieldset>
                 </form>
+
             </div>
         </div>
     </div>

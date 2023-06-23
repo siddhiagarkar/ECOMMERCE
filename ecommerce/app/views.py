@@ -13,6 +13,16 @@ def store(request):
     num = len(carousels)-1
     colorzz = list(Product.objects.all().values('color').distinct())
     colorz = [u['color'] for u in colorzz]
+
+    e = request.POST.get('em')
+    m = request.POST.get('msg')
+
+    if request.method == 'POST':
+        message = Message.objects.create(email = e, subject = m)
+        # make the fields blank
+        e = ''
+        m = ''
+
     context = {'things': things, 'colorz': colorz, 'colorzz': colorzz, 'carousels': carousels, 'num': num}
     return render(request, 'store.html', context)
 
@@ -49,7 +59,8 @@ def updateItem(request):
         print('Action : ', action)
         print('Product id : ', prod_id)
 
-        customer, created = Customer.objects.get_or_create(user=request.user)
+        # customer, created = Customer.objects.get_or_create(user=request.user)
+        customer = request.user.customer
         product = Product.objects.get(id = prod_id)
         order, created = Order.objects.get_or_create(customer=customer, complete = False)
         orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
@@ -156,20 +167,33 @@ def logout_view(request):
     # Redirect to a success page.
 
 def registration_view(request):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name = 'customer', null=True, blank=True)
-    e = request.POST.get('email')
+
     n = request.POST.get('username')
-    u = request.user
+    
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            fld = Customer.objects.create(user = u, name = n, email = e)
-            form.save()
+            
+            form.save() #GOLDEN LINE : Create Customer object after saving the form
+            u=User.objects.get(username=n) #GOLDEN LINE
+            Customer.objects.create(user = u, name = u.username, email = u.email) #GOLDEN LINE
+
             #log the user in
             return redirect('login')
         else:
             messages.error(request, 'Error')
+            print('error')
     else:
         form = UserCreationForm()
     return render(request, 'registration.html', {'form': form})
+
+# def msg_view(request):
+#     e = request.POST.get('em')
+#     m = request.POST.get('msg')
+
+#     if request.method == 'POST':
+#         message = Message.objects.create(email = e, subject = m)
+
+#     return render(request, 'store.html')
+
 
