@@ -16,6 +16,17 @@ def store(request):
     colorzz = list(Product.objects.all().values('color').distinct())
     colorz = [u['color'] for u in colorzz]
 
+    brands = list(Product.objects.all().values('brand').distinct())
+    brandz = [u['brand'] for u in brands]
+    # print(brandz)
+
+    for i in brandz:
+        # print(i)
+        brandz = [i['brand'] for i in brands]
+        b = Brand.objects.get(id = i)
+        # b is gawd
+        print(b)
+
     e = request.POST.get('em')
     m = request.POST.get('msg')
 
@@ -25,19 +36,36 @@ def store(request):
         e = ''
         m = ''
 
-    context = {'things': things, 'colorz': colorz, 'colorzz': colorzz, 'carousels': carousels, 'num': num}
+    context = {'things': things, 'colorz': colorz, 'colorzz': colorzz, 'carousels': carousels, 'num': num, 'brands': brands, 'b':b}
+    return render(request, 'store.html', context)
+
+def sale_view(request):
+    things = Product.objects.all()
+    # carousels = Carousel.objects.all()
+    # num = len(carousels)-1
+    # carousels only on home page
+
+    colorzz = list(Product.objects.all().values('color').distinct())
+    colorz = [u['color'] for u in colorzz]
+
+    if request.method == 'POST':
+        c = request.POST.get('car')
+        print(c)
+        things = Product.objects.all().filter(sale = c)
+
+    context = {'things': things,'colorz':colorz, 'colorzz': colorzz }
     return render(request, 'store.html', context)
 
 def cart(request):
     if request.user.is_authenticated:
         customer = request.user.customer
-        order, created = Order.objects.get_or_create(customer=customer, complete=False) #order number obtained
-        items = order.orderitem_set.all() #obtained the ordered items for that order number
+        orderr, created = Order.objects.get_or_create(customer=customer, complete=False) #order number obtained
+        items = orderr.orderitem_set.all() #obtained the ordered items for that order number
     else:
         items=[]
-        order = {'get_cart_total':0, 'get_cart_items':0}
+        orderr = {'get_cart_total':0, 'get_cart_items':0}
 
-    context = {'items': items, 'order': order}
+    context = {'items': items, 'orderr': orderr}
     return render(request, 'cart.html', context)
 
 def checkout(request):
@@ -148,6 +176,26 @@ def colorview(request):
 
     context = {'things': things, 'colorz': colorz}
     return render(request,'store.html',context)
+
+# def brandview(request):
+#     things = Product.objects.all()
+#     if request.method == 'POST':
+#         brand=request.POST.getlist('brand')
+#         print(brand)
+
+#         for x in range(len(brand)):
+#             print("my chosen brand",(x+1) , brand[x])
+
+#         if brand is not None:
+#             print('you selected a brand filter!')
+#             for x in range(len(brand)):
+#                 things = Product.objects.filter(brand = brand[x])
+
+#     brands = list(Product.objects.all().values('brand').distinct())
+#     brand = [u['brand'] for u in brands]
+
+#     context = {'things': things, 'brandz': brands}
+#     return render(request,'store.html',context)
 
 def login_view(request):
     username = request.POST.get('username')

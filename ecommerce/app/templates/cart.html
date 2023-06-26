@@ -40,10 +40,10 @@ body{
 
             <div class="rows" style="display: flex; flex-direction: row; justify-content: space-between; margin: 10px;">
                     <div class="element">
-                        Items : 
+                        Items : {orderr.get_cart_items}
                     </div>
                     <div class="element">
-                        Total : ₹{{order.get_cart_total}}
+                        Total : ₹{{orderr.get_cart_total}}
                     </div>
                     <div class="element">
                         <a href = "{% url 'checkout' %}">

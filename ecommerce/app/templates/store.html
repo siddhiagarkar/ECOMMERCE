@@ -19,7 +19,8 @@
       </div>
       </div>
 <br>
-      <!--CAROUSEL  -->
+      <!--CAROUSEL (should be only on the home page)-->
+      {% if request.path == '/' %} 
     <div class="container">
       <div id="myCarousel" class="carousel slide" data-ride="carousel" style="height: 500px;">
         <!-- Indicators -->
@@ -35,15 +36,19 @@
     
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
+          
           {% for carousel in carousels %}
           {% if carousel.slide_number is 0 %}
           <div class="item active">
           {% else %}
           <div class="item">
           {% endif %}
-          <a href="#">
-            <img src="{{carousel.imageURL}}" alt="{{carousel.title}}" style="width:100%; height: 500px; border-radius: 20px;">
-          </a>
+          <form method="POST" action="{% url 'sales' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+          <!-- <a href="{% url 'sales' %}"> -->
+            <input type="submit" alt="{{carousel.title}}" style="width:100%; height: 500px; border-radius: 20px; background-image: url({{carousel.imageURL}});" value="{{carousel.id}}" name="car">
+          <!-- </a> -->
+        </form>
           </div>
           {% endfor %}
         </div>
@@ -59,6 +64,7 @@
         </a>
       </div>
     </div>
+    {% endif %}
 
       <hr style="border: 0.2px solid rgb(184, 184, 233);">
       <nav class="navbar navbar-expand-lg">
@@ -180,6 +186,12 @@
         {% for clr in colorz %}
         <input type="checkbox" name="color" value="{{clr}}"> {{clr}}
         {% endfor %}
+      </div>
+      <div class="modal-body">
+        <form method='POST' action="{% url 'products_by_colours' %}">
+        {% csrf_token %}
+        Brand:
+        <input type="checkbox" name="brand" value="{{brnd}}"> {{b}}
       </div>
 
       <div class="modal-footer">
