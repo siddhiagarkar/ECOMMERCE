@@ -111,15 +111,15 @@ a:active{
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                               <li>
-                                <form method='post' action="#">
+                                <form method='post' action="{% url 'profile' %}">
                                   {% csrf_token %}
-                                <input type="submit" class="dropdown-item" name="view-profile" value="View Profile">
+                                <input type="submit" class="dropdown-item" name="view-profile" value="My Profile">
                                 </form>
                               </li>
                               <li>
                                 <form method='post' action="#">
                                   {% csrf_token %}
-                                <input type="submit" class="dropdown-item" name="my-orders" value="My Orders">
+                                <input type="submit" class="dropdown-item" name="my-orders" value="Order History">
                                 </form>
                               </li>
                               <li>

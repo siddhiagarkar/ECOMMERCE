@@ -240,4 +240,8 @@ def registration_view(request):
         form = CreateUserForm()
     return render(request, 'registration.html', {'form': form})
 
+def profile(request):
+    context={}
+    return render(request, 'profile.html', context)
+
 
