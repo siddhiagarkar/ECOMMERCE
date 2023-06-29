@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 
-from .forms import CreateUserForm
+from .forms import CreateUserForm, UpdateUserForm
 
 def store(request):
     things = Product.objects.all()
@@ -29,12 +29,6 @@ def store(request):
 
     e = request.POST.get('em')
     m = request.POST.get('msg')
-
-    if request.method == 'POST':
-        message = Message.objects.create(email = e, subject = m)
-        # make the fields blank
-        e = ''
-        m = ''
 
     context = {'things': things, 'colorz': colorz, 'colorzz': colorzz, 'carousels': carousels, 'num': num, 'brands': brands, 'b':b}
     return render(request, 'store.html', context)
@@ -241,7 +235,35 @@ def registration_view(request):
     return render(request, 'registration.html', {'form': form})
 
 def profile(request):
-    context={}
+    old_user = request.user
+    # submitbutton= request.POST.get('SAVE')
+    # print(submitbutton)
+    if request.method == 'POST':
+
+        submitbutton= request.POST.get('submit')
+        print(submitbutton)
+        
+        print('post')
+        form = UpdateUserForm(instance=old_user, data=request.POST.get(request.user))
+        if form.is_valid():
+            form.save()
+            Customer.objects.filter(user=old_user).update(f_name=old_user.first_name, l_name=old_user.last_name, email=old_user.email)
+            return redirect('profile')
+
+    context={'old_user':old_user, 'form':UpdateUserForm(instance=old_user)}
     return render(request, 'profile.html', context)
 
 
+def wishlistview(request):
+    if request.user.is_authenticated:
+        wishlist = Wishlist.objects.filter(customer=request.user)
+        context = {'wishlist': wishlist}
+    return render(request, 'wishlist.html', context)
+
+def productview(request, myid):
+    product = Product.objects.get(id = myid)
+    sizes = list(Size.objects.filter(product = product).values('size'))
+    sizes = [u['size'] for u in sizes]
+    print(sizes)
+    context = {'product': product, 'sizes': sizes}
+    return render(request, 'product.html', context)

@@ -8,6 +8,9 @@
 <body>
     <div class="c">
     <div class="card">
+      
+      <form method="POST" action="{% url 'profile' %}">
+        {% csrf_token %}
         <div class="container" id="contentt">
           <h4 style="color: rgb(216, 54, 108);">My Profile</h4> 
           <br>
@@ -16,11 +19,11 @@
           <h4><b>Last name: </b><div id="l_name">{{request.user.last_name}}</div></h4> 
           <h4><b>Email: </b><div id="email">{{request.user.email}}</div></h4> 
         </div>
-        <!-- HTML !-->
-        <div style="padding-left: 30px; padding-right: 30px; padding-bottom: 10px; display: flex; justify-content: center;">
-<button class="button-59" id="button-59" type="submit" value="EDIT">EDIT</button>
-</div>
 
+        <div style="padding-left: 30px; padding-right: 30px; padding-bottom: 10px; display: flex; justify-content: center;">
+        <button class="button-59" id="button-59" type="button" value="EDIT" name="butname">EDIT</button>
+        </div>
+      </form>
     </div>
     </div>
 

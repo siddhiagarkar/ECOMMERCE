@@ -17,5 +17,7 @@ urlpatterns = [
     path('register/login/', views.login_view, name='login'),
     path('logout/', views.logout_view, name='logout'),
     path('register/', views.registration_view, name='register'),
+    path('wishlist/', views.wishlistview, name='wishlist'),
+    path('product/<int:myid>', views.productview, name='product'),
     # path('msg-submitted/', views.store, name='mes'),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)

@@ -101,6 +101,13 @@ a:active{
                     </li>
                     {% if request.user.is_authenticated %}
                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'wishlist' %}">
+                            WISHLIST
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item">
                         <!-- <a class="nav-link" href="#"> -->
                           <div class="dropdown">    
                             

@@ -102,6 +102,12 @@ class OrderItem(models.Model):
     def get_quantity(self):
         total = sum([self.quantity for item in self.product.order])
         return total
+class Wishlist(models.Model):
+    customer = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    product = models.ForeignKey(Product, null=True, on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return self.product.item
 
 class Shipping(models.Model):
     customer = models.ForeignKey(Customer, null=True,on_delete=models.SET_NULL)
@@ -114,12 +120,12 @@ class Shipping(models.Model):
     def __str__(self):
         return self.address
     
-class Message(models.Model):
-    email = models.EmailField(null=True)
-    subject = models.CharField(null=True, max_length= 200)
+# class Message(models.Model):
+#     email = models.EmailField(null=True)
+#     subject = models.CharField(null=True, max_length= 200)
 
-    def __str__(self):
-        return self.email
+#     def __str__(self):
+#         return self.email
     
 SIZE_CHOICES = (
     ("XXS", "XXS"),

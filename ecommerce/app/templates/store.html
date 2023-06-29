@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 <body>
       <div class="filter-and-search" style="display: flex; flex-direction:row; justify-content:center; justify-content:space-evenly;">
         <form action="{% url 'searched_item' %}" method="GET">
@@ -129,8 +130,14 @@
       <!-- CARDS -->
         <div class="row" style="margin:25px;justify-content: center;">
           {% for thing in things %}
+
             <div class="col-lg-3" style="background-color: #d9dbe4; border-radius: 12px; padding-top: 10px;padding-bottom: 10px; margin: 20px; justify-content: space-around;">
-              <img class="card-img-top" src="{{thing.imageURL}}" alt="Card image cap">
+
+              <form method="post" action="{% url 'product' thing.id %}">
+                {% csrf_token %}
+              <input type="image" class="card-img-top" src="{{thing.imageURL}}" alt="Card image cap">
+              </form>
+
               <div class="card-body">
                 <h5 class="card-title">{{thing.item}}</h5>
                 <p class="card-text">
@@ -142,6 +149,7 @@
                   {% endif %}
                 </p>
                 <button class="btn btn-outline-primary add-btn update-cart" data-action="add" data-id={{thing.id}}>Add to cart</button>
+                <button class="btn btn-outline-danger add-btn update-wishlist" data-action="add" data-id={{thing.id}}>Wishlist</button>
               </div>
               <div class="card-footer">
                 <small class="text-muted">
