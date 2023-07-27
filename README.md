@@ -1,5 +1,7 @@
 # ECOMMERCE
 
+To run: `python manage.py runserver`
+
 #Registration Page
 ![Screenshot from 2023-07-26 20-57-57](https://github.com/siddhiagarkar/ECOMMERCE/assets/102473614/dbb907c2-60aa-4916-80f8-8265f0ace1b1)
 
